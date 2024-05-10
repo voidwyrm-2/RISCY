@@ -253,7 +253,7 @@ def interpreter(code: str, compile_mode: bool = False, savename: str = None):
         elif len(l) > 4:
             print(failure('SyntaxError', f"unneeded argument '{l[4]}' argument for instruction '{l[0]}'", ln+removed_lines)); return
         else:
-            print(failure('InterpreterError', f"some how len(l) is not 4, not < 4, and not > 4, len is instead '{len(l)}';\ncurrent line is '0i{ln+removed_lines}', and content is '{l}'")); return
+            print(failure('InterpreterError', f"somehow len(l) is not 4, not < 4, and not > 4, len is instead '{len(l)}';\ncurrent line is '0i{ln+removed_lines}', and content is '{l}'")); return
     
     if not compile_mode: print(f'registers: {registers}; labels: {labels}')
     if compile_mode:

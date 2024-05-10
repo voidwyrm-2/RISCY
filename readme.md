@@ -1,9 +1,9 @@
-# riscv-interpreters
+# RISCY
 A successor to an older project called 'Asmpy', meant to be actually in line with RISC-V.
 
 I made Asmpy when I was less experienced with making interpreters and Python in general, so it's badly written.
 
-RISCPY is much better written since I have way more experience now!(if you're a Python expert reading this, I'm so sorry)
+RISCY is much better written since I have way more experience now!(if you're a Python expert reading this, I'm so sorry)
 
 And not only that, it is(or will be, at least) be written in multiple languages.
 
