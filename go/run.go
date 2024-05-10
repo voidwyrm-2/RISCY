@@ -26,6 +26,7 @@ func readFile(fileName string) (string, error) {
 	return content, nil
 }
 
+/*
 func writeFile(filename string, data string) error {
 	// Open the file with write permissions, create it if it doesn't exist
 	file, err := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE, 0644)
@@ -42,6 +43,7 @@ func writeFile(filename string, data string) error {
 
 	return nil
 }
+*/
 
 /*
 func removePrefix(text, prefix string) string {
@@ -66,8 +68,9 @@ func startsWith(text, prefix string) bool {
 */
 
 func main() {
+	//fmt.Println("Hello!"[:1])
 
-	fmt.Println("RISCY Go Interpreter")
+	fmt.Println("Go RISCY Interpreter")
 
 	var prevcom string
 
@@ -88,6 +91,7 @@ func main() {
 
 		switch command {
 		case "exit":
+			fallthrough
 		case "quit":
 			fmt.Println("Exiting program...")
 			return

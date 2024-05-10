@@ -52,26 +52,25 @@ class failure:
 
 
 def verifyregcal(regs: list[int], ln: int, rml: int, regcal: str | int, imm: int):
-    invalid = failure(f"InvalidRegisterCallError", f"invalid register index '{regcal}'", ln+rml)
+    invalid = failure("InvalidRegisterCallError", f"invalid register index '{regcal}'", ln+rml)
     if imm == 1 and regcal.isdigit():
         return int(regcal)
     elif imm == 0 and regcal.isdigit():
-        return failure(f"InvalidRegisterCallError", f"invalid register index '{regcal}'(did you try to use a non-immediate instruction as an immediate instruction?)", ln+rml)
+        return failure("InvalidRegisterCallError", f"invalid register index '{regcal}'(did you try to use a non-immediate instruction as an immediate instruction?)", ln+rml)
     elif imm == 2 and not regcal.isdigit():
         return regcal
-    elif regcal.casefold().startswith('x'):
+    elif regcal.startswith('x'):
         if regcal.removeprefix('x').isdigit():
             if int(regcal.removeprefix('x')) < len(regs):
                 return int(regcal.removeprefix('x'))
-        return invalid
-    elif regcal.casefold() == 'zero':
+    elif regcal == 'zero':
         return 0
-    elif regcal.casefold().startswith('n'):
+    elif regcal.startswith('n'):
         check = None
-        if regcal.casefold() == 'n': check = 0
+        if regcal == 'n': check = 0
         else:
-            if regcal.casefold().removeprefix('n').isdigit():
-                check = int(regcal.casefold().removeprefix('n'))
+            if regcal.removeprefix('n').isdigit():
+                check = int(regcal.removeprefix('n'))
             else: return invalid
         if check == None: return invalid
         for i, r in enumerate(regs):
@@ -79,7 +78,7 @@ def verifyregcal(regs: list[int], ln: int, rml: int, regcal: str | int, imm: int
         print(f"WARNING FROM LINE {ln+rml+1}: could not find register with value of '{check}', defaulting to x0")
         return 0
     elif regcal == None: return None
-    else: return invalid
+    return invalid
 
 def callregister(registers_list: list[int], labels: dict[str, int], linenum: int, rm_lines: int, instruction: str, to: str, first: str, second: str):
     immediate = 0
